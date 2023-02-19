@@ -109,7 +109,6 @@ function Addvehicle() {
         <div className='vehicle-top'>
           <div className='input-block'>
             <label>Scenario List</label>
-            {/* <input type="text" placeholder='Select Scenario' className='scenario-input'/> */}
             <select value={vehicleData.scenarioId} name='scenarioId' onChange={handleChange} className="scenario-input">
               <option value="">Select Scenario</option>
               {

@@ -1,15 +1,71 @@
 {
   "scenarios": [
     {
-      "scenarioName": "Welcome",
+      "scenarioName": "Test Scenario",
       "scenarioTime": "10",
+      "id": 1
+    },
+    {
+      "scenarioName": "Sample Scenario",
+      "scenarioTime": "25",
       "id": 2
     },
     {
-      "scenarioName": "Chai",
-      "scenarioTime": "25",
+      "scenarioName": "My Scenario",
+      "scenarioTime": "60",
       "id": 3
     }
   ],
-  "vehicles": []
+  "vehicles": [
+    {
+      "scenarioId": 1,
+      "vehicleName": "Car",
+      "speed": "5",
+      "positionX": "200",
+      "positionY": "200",
+      "direction": "Towards",
+      "color": "rgb(227.26088651578078, 140.33805778604236, 13.941737512831946)",
+      "id": 1
+    },
+    {
+      "scenarioId": 1,
+      "vehicleName": "Bus",
+      "speed": "3",
+      "positionX": "300",
+      "positionY": "300",
+      "direction": "Backwards",
+      "color": "rgb(97.92140837731286, 38.10079073147934, 55.961131887557414)",
+      "id": 2
+    },
+    {
+      "scenarioId": 1,
+      "vehicleName": "Truck",
+      "speed": "10",
+      "positionX": "150",
+      "positionY": "300",
+      "direction": "Downwards",
+      "color": "rgb(9.561886077359356, 248.36352667194697, 113.88707877295393)",
+      "id": 3
+    },
+    {
+      "scenarioId": 2,
+      "vehicleName": "bike",
+      "speed": "5",
+      "positionX": "600",
+      "positionY": "350",
+      "direction": "Upwards",
+      "color": "rgb(170.74613510967924, 131.14871082735488, 250.0824506283197)",
+      "id": 4
+    },
+    {
+      "scenarioId": 3,
+      "vehicleName": "Cycle",
+      "speed": "1",
+      "positionX": "600",
+      "positionY": "350",
+      "direction": "Backwards",
+      "color": "rgb(53.21536046804177, 82.1292595414389, 186.75039881851686)",
+      "id": 5
+    }
+  ]
 }
