@@ -138,6 +138,7 @@ body{
 }
 
 
+
 .allscenario{
   width: 80%;
   margin-top: 2rem;
@@ -160,6 +161,25 @@ body{
 .table-scenarios > tbody{
   background-color: rgba(217,217,217,255);
   color: var(--black);
+}
+
+.edit-table input{
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: var(--black);
+  color: var(--white);
+  text-align: center;
+}
+
+.edit-table button{
+  background-color: var(--red);
+  color: var(--white);
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  
 }
 
 .table-scenarios > tbody > tr> td{
