@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Addvehicle() {
   const navigate = useNavigate();
+  const location = useLocation();
   const directions = ["Towards","Backwards", "Upwards", "Downwards"];
   const [scenarios, setScenarios] = useState([]);
+  const [vehicleId, setVehicleId] = useState(null);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [errors, setErrors] = useState({});
+  
   const [vehicleData, setVehicleData] = useState({
     scenarioId: 0,
     vehicleName: '',
@@ -20,11 +25,28 @@ function Addvehicle() {
   const error = {};
 
   useEffect(() => {
+    if (location.state && location.state.data) {
+      console.log(location.state.data)
+      let { id, scenarioId, vehicleName, speed, positionX, positionY, direction } = location.state.data;
+      setVehicleData(prev => ({
+        ...prev,
+        scenarioId: scenarioId,
+        vehicleName: vehicleName,
+        speed: speed,
+        positionX: positionX,
+        positionY: positionY,
+        direction: direction,
+      }));
+      setVehicleId(id)
+    }
+    window.history.replaceState({}, '/addvehicle');
+  }, [location.state]);
+
+  useEffect(() => {
     const fetchData = async () => {
       await axios.get('http://localhost:3005/scenarios')
       .then(res => {
         setScenarios(res.data)
-        console.log(res.data)
       })
       .catch(err => {
         console.log(err)
@@ -67,9 +89,25 @@ function Addvehicle() {
       return;
     }
     // console.log(vehicleData);
-    await axios.post('http://localhost:3005/vehicles', vehicleData)
-    .then(res => { console.log(res) })
-    .catch(err => { console.log(err) })
+    if (vehicleId) {
+      await axios.put(`http://localhost:3005/vehicles/${vehicleId}`, vehicleData)
+        .then(res => { console.log(res) })
+        .catch(err => { console.log(err) });
+      toast.success("Updated Successfully", {
+        position: "bottom-right",
+        theme: 'colored',
+        autoClose: 3000,
+      });
+    } else {
+      await axios.post('http://localhost:3005/vehicles', vehicleData)
+        .then(res => { console.log(res) })
+        .catch(err => { console.log(err) });
+      toast.success("Added Successfully", {
+        position: "bottom-right",
+        theme: 'colored',
+        autoClose: 3000,
+      });
+    }
     handleReset();
   }
 
@@ -158,6 +196,7 @@ function Addvehicle() {
       <button className='btncss btn-green' type='submit' onClick={handleAddClick}>Add</button>
       <button className='btncss btn-orange' onClick={handleReset}>Reset</button>
       <button className='btncss btn-blue' onClick={() => navigate('/')}>Go Back</button>
+      <ToastContainer/>
     </div>
   )
 }

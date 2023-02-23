@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useLocation } from 'react-router-dom';
+
 
 function Addscenario() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [scenarioId, setScenarioId] = useState(null);
   const [scenarioData, setScenarioData] = useState({
     scenarioName: '',
     scenarioTime: '',
@@ -12,6 +18,18 @@ function Addscenario() {
 
   const [errors, setErrors] = useState({});
   const error = {};
+
+  useEffect(() => {
+    if (location.state && location.state.scenario) {
+      let { scenarioName, scenarioTime, id } = location.state.scenario;
+      setScenarioData({
+        scenarioName: scenarioName,
+        scenarioTime: scenarioTime
+      });
+      setScenarioId(id);
+    }
+    window.history.replaceState( {} , '/addscenario' );
+  }, [location.state]);
 
   useEffect(() => {
     if(buttonClicked){
@@ -30,9 +48,26 @@ function Addscenario() {
       setErrors(error);
       return;
     }
+
+    if (scenarioId) {
+    await axios.put(`http://localhost:3005/scenarios/${scenarioId}`, scenarioData)
+      .then(res => { console.log(res) })
+      .catch(err => { console.log(err) });
+    toast.success("Updated Successfully", {
+      position: "bottom-right",
+      theme: 'colored',
+      autoClose: 3000,
+    });
+  } else {
     await axios.post('http://localhost:3005/scenarios', scenarioData)
-    .then(res => { console.log(res) })
-    .catch(err => { console.log(err) })
+      .then(res => { console.log(res) })
+      .catch(err => { console.log(err) });
+    toast.success("Added Successfully", {
+      position: "bottom-right",
+      theme: 'colored',
+      autoClose: 3000,
+    });
+  }
     handleReset();
   }
 
@@ -80,6 +115,7 @@ function Addscenario() {
       <button className='btncss btn-green' type='submit' onClick={handleAddClick}>Add</button>
       <button className='btncss btn-orange' onClick={handleReset}>Reset</button>
       <button className='btncss btn-blue' onClick={() => navigate('/')}>Go Back</button>
+      <ToastContainer/>
     </div>
   )
 }

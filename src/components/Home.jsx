@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const [scenarios, setScenarios] = useState([]);
   const [vehicles, setVehicles] = useState([]);
   const [selectedScenario, setSelectedScenario] = useState("");
   const [isSimulating, setIsSimulating] = useState(false);
+  const [iteration, setIteration] = useState(0);
   const canvasRef = useRef();
+
+  const navigate = useNavigate();
   
 
   useEffect(() => {
@@ -31,6 +35,10 @@ function Home() {
   useEffect(() => {
     if(selectedScenario != ""){
       fetchVehicle();
+    }
+    if(isSimulating){
+      setIsSimulating(false);
+      setIteration(0)
     }
   },[selectedScenario])
 
@@ -93,7 +101,7 @@ function Home() {
                 let x = parseInt(vehicle.positionX);
                 let y = parseInt(vehicle.positionY);
                 const speed = parseInt(vehicle.speed);
-                console.log(x,y,speed)
+                // console.log(x,y,speed)
                 switch (vehicle.direction) {
                   case 'Downwards':
                     y += speed;
@@ -121,18 +129,33 @@ function Home() {
                 return { ...vehicle, positionX: x, positionY: y };
               });
               setVehicles(newVehicles);
+              setIteration(iteration + 1);
             }
     if(isSimulating){
       for(let scenario of scenarios){
         if(scenario.id === parseInt(selectedScenario)){
+          if (iteration >= scenario.scenarioTime) {
+            setIsSimulating(false);
+            setIteration(0);
+          }
+          else{
           const intervalDuration = (scenario.scenarioTime * 1000) / 60;
           intervalId = setInterval(moveVehicles, intervalDuration);
+          console.log(iteration)
+          }
         }
       }
     }
+
+    
+    
     return () => clearInterval(intervalId);
   },[isSimulating, scenarios, selectedScenario, vehicles])
 
+
+  const handleEdit = (data) => {
+    navigate('/addvehicle', { state: {data}})
+  }
 
   const handleDelete = async (id) => {
     await axios.delete(`http://localhost:3005/vehicles/${id}`)
@@ -187,7 +210,7 @@ function Home() {
                 <td>{d.speed}</td>
                 <td>{d.direction}</td>
                 <td>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 icon" onClick={() => handleEdit(d)}>
                   <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                 </svg>
 
