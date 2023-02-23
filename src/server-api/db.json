@@ -1,141 +1,61 @@
 {
   "scenarios": [
     {
-      "scenarioName": "Test Scenario",
-      "scenarioTime": "10",
+      "scenarioName": "test",
+      "scenarioTime": "20",
       "id": 1
     },
     {
-      "scenarioName": "Sample Scenario",
-      "scenarioTime": "25",
+      "scenarioName": "sample",
+      "scenarioTime": "30",
       "id": 2
     },
     {
-      "scenarioName": "My Scenario",
-      "scenarioTime": "60",
+      "scenarioName": "trial",
+      "scenarioTime": "40",
       "id": 3
-    },
-    {
-      "scenarioName": "Scenario 1",
-      "scenarioTime": "30",
-      "id": 4
-    },
-    {
-      "scenarioName": "Scenario 4",
-      "scenarioTime": "15",
-      "id": 5
-    },
-    {
-      "scenarioName": "Scenario 3",
-      "scenarioTime": "30",
-      "id": 6
-    },
-    {
-      "scenarioName": "Working-case",
-      "scenarioTime": "20",
-      "id": 7
     }
   ],
   "vehicles": [
     {
       "scenarioId": 1,
-      "vehicleName": "Car",
-      "speed": "5",
+      "vehicleName": "car",
+      "speed": "20",
       "positionX": "200",
-      "positionY": "200",
+      "positionY": "300",
       "direction": "Towards",
-      "color": "rgb(227.26088651578078, 140.33805778604236, 13.941737512831946)",
+      "color": "rgb(108.48681234103002, 47.29873878133561, 167.07350519517146)",
       "id": 1
     },
     {
-      "scenarioId": 1,
-      "vehicleName": "Bus",
-      "speed": "5",
-      "positionX": 255,
-      "positionY": 300,
-      "direction": "Backwards",
-      "color": "rgb(107.98763728211964, 157.8124358241758, 130.14816728189768)",
+      "scenarioId": 2,
+      "vehicleName": "y",
+      "speed": "40",
+      "positionX": "200",
+      "positionY": "200",
+      "direction": "Towards",
+      "color": "rgb(26.756117062171768, 219.87972118223664, 184.69640034962072)",
       "id": 2
     },
     {
-      "scenarioId": 1,
-      "vehicleName": "Truck",
-      "speed": "10",
-      "positionX": "150",
-      "positionY": "300",
-      "direction": "Downwards",
-      "color": "rgb(9.561886077359356, 248.36352667194697, 113.88707877295393)",
+      "scenarioId": 2,
+      "vehicleName": "ln",
+      "speed": "50",
+      "positionX": "300",
+      "positionY": "400",
+      "direction": "Backwards",
+      "color": "rgb(167.0918604192056, 91.46826646541939, 83.09192530412763)",
       "id": 3
     },
     {
       "scenarioId": 2,
-      "vehicleName": "bike",
-      "speed": "5",
-      "positionX": "600",
-      "positionY": "350",
-      "direction": "Upwards",
-      "color": "rgb(170.74613510967924, 131.14871082735488, 250.0824506283197)",
-      "id": 4
-    },
-    {
-      "scenarioId": 3,
-      "vehicleName": "Cycle",
-      "speed": "1",
-      "positionX": "600",
-      "positionY": "350",
-      "direction": "Backwards",
-      "color": "rgb(53.21536046804177, 82.1292595414389, 186.75039881851686)",
+      "vehicleName": "hhi",
+      "speed": "55",
+      "positionX": "45",
+      "positionY": "48",
+      "direction": "Downwards",
+      "color": "rgb(20.391818187717202, 173.58521712469494, 148.9638683204876)",
       "id": 5
-    },
-    {
-      "scenarioId": 4,
-      "vehicleName": "Truck",
-      "speed": "15",
-      "positionX": "100",
-      "positionY": "100",
-      "direction": "Towards",
-      "color": "rgb(3.344437613812042, 254.67975024554107, 65.14159903968998)",
-      "id": 6
-    },
-    {
-      "scenarioId": 7,
-      "vehicleName": "a",
-      "speed": "40",
-      "positionX": "100",
-      "positionY": 100,
-      "direction": "Towards",
-      "color": "rgb(65.15748478318243, 81.08667120731255, 210.1889669048711)",
-      "id": 7
-    },
-    {
-      "scenarioId": 7,
-      "vehicleName": "b",
-      "speed": "80",
-      "positionX": "100",
-      "positionY": "100",
-      "direction": "Towards",
-      "color": "rgb(204.8529894721035, 222.4141912820859, 163.03729493687572)",
-      "id": 8
-    },
-    {
-      "scenarioId": 7,
-      "vehicleName": "c",
-      "speed": "120",
-      "positionX": "100",
-      "positionY": "100",
-      "direction": "Towards",
-      "color": "rgb(74.35605325824609, 32.79498776113536, 241.2119563564208)",
-      "id": 9
-    },
-    {
-      "scenarioId": 7,
-      "vehicleName": "d",
-      "speed": "160",
-      "positionX": "100",
-      "positionY": "100",
-      "direction": "Towards",
-      "color": "rgb(77.00715857016097, 17.05224806834558, 89.57642444516914)",
-      "id": 10
     }
   ]
 }

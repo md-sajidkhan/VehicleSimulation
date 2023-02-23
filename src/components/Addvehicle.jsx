@@ -27,7 +27,8 @@ function Addvehicle() {
   useEffect(() => {
     if (location.state && location.state.data) {
       console.log(location.state.data)
-      let { id, scenarioId, vehicleName, speed, positionX, positionY, direction } = location.state.data;
+      let { id = 0,  scenarioId = 0, vehicleName = '', speed = '', positionX= '', positionY = '', direction = '' } = location.state.data;
+      console.log(scenarioId, vehicleName, speed, positionX, positionY, direction);
       setVehicleData(prev => ({
         ...prev,
         scenarioId: scenarioId,

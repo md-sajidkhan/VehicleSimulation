@@ -24,6 +24,13 @@ function Allscenario() {
     fetchData();
   }, [])
 
+  // const removeActive = () => {
+  //   const activeElement = document.querySelector('.active');
+  //     if (activeElement) {
+  //       activeElement.classList.remove('active');
+  //     }
+  // }
+
   const handleEdit = (index, name, time) => {
     const scenario = {
       id: index,
@@ -33,17 +40,13 @@ function Allscenario() {
     navigate('/addscenario', { state : { scenario}} )
   };
 
-  const handleSave = async(index) => {
-    const response = await axios.put(`http://localhost:3005/scenarios/${index}`, {
-      scenarioName: updateName,
-      scenarioTime: updateTime
-    });
-    console.log(response)
-    fetchData();
-    setUpdateName('');
-    setUpdateTime(0);
-    setEditingRowIndex(null);
-  };
+  const handleAddVehicle = (id) => {
+    const data = {
+      scenarioId: id,
+    }
+    navigate('/addvehicle', {state: {data}})
+  }
+
 
   const renderRow = (d) => {
     return (
@@ -53,7 +56,7 @@ function Allscenario() {
                 <td>{d.scenarioTime}s</td>
                 <td>{d.vehicles.length}</td>
                 <td>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 icon" onClick={() => navigate('/addvehicle')}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 icon" onClick={() => handleAddVehicle(d.id)}>
                     <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z" clipRule="evenodd" />
                   </svg>
                 </td>

@@ -141,7 +141,6 @@ function Home() {
           else{
           const intervalDuration = (scenario.scenarioTime * 1000) / 60;
           intervalId = setInterval(moveVehicles, intervalDuration);
-          console.log(iteration)
           }
         }
       }

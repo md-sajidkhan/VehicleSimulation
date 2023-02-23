@@ -28,7 +28,7 @@ function Sidebar({children}) {
         <div className="sidebar">
         {
           menuItems.map((item, index) => (
-            <NavLink to={item.path} key={index} className={`link ${active === index ? 'active': ''}`} onClick={() => handleActive(index)}>
+            <NavLink to={item.path} key={index} className='link' onClick={() => handleActive(index)}>
               {item.name}
             </NavLink>
           ))
