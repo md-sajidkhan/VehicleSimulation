@@ -21,11 +21,11 @@ Steps to run the application:
 	d. Install electronJS
 	    > npm i electron
 	    
-        d. Start Desktop Application
+        e. Start Desktop Application
             > npm run app
 	    
-        e. Start Web Application
+        f. Start Web Application
             > npm run web
 	    
-        f. Open application url in browser for web application
+        g. Open application url in browser for web application
             default : "http://localhost:5173"
