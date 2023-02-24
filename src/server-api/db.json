@@ -1,60 +1,70 @@
 {
   "scenarios": [
     {
-      "scenarioName": "test",
-      "scenarioTime": "20",
+      "scenarioName": "Test Scenario",
+      "scenarioTime": "2",
       "id": 1
     },
     {
-      "scenarioName": "sample",
-      "scenarioTime": "30",
+      "scenarioName": "My Scenario",
+      "scenarioTime": "10",
       "id": 2
     },
     {
-      "scenarioName": "trial",
-      "scenarioTime": "40",
+      "scenarioName": "Scenario ABC",
+      "scenarioTime": "20",
       "id": 3
     }
   ],
   "vehicles": [
     {
       "scenarioId": 1,
-      "vehicleName": "car",
-      "speed": "20",
-      "positionX": "200",
-      "positionY": "300",
+      "vehicleName": "Bus",
+      "speed": "3",
+      "positionX": "30",
+      "positionY": "215",
       "direction": "Towards",
-      "color": "rgb(108.48681234103002, 47.29873878133561, 167.07350519517146)",
+      "color": "rgb(21.002648066480234, 65.02657129935403, 97.78490176817196)",
       "id": 1
     },
     {
-      "scenarioId": 2,
-      "vehicleName": "y",
-      "speed": "40",
-      "positionX": "200",
-      "positionY": "200",
-      "direction": "Towards",
-      "color": "rgb(26.756117062171768, 219.87972118223664, 184.69640034962072)",
+      "scenarioId": 1,
+      "vehicleName": "Car",
+      "speed": "5",
+      "positionX": "400",
+      "positionY": "400",
+      "direction": "Upwards",
+      "color": "rgb(248.59701968456585, 173.42058515867095, 134.06816998239483)",
       "id": 2
     },
     {
       "scenarioId": 2,
-      "vehicleName": "ln",
-      "speed": "50",
-      "positionX": "300",
-      "positionY": "400",
-      "direction": "Backwards",
-      "color": "rgb(167.0918604192056, 91.46826646541939, 83.09192530412763)",
+      "vehicleName": "Cycle",
+      "speed": "1",
+      "positionX": "10",
+      "positionY": "250",
+      "direction": "Towards",
+      "color": "rgb(36.22209195016103, 136.84421113019698, 169.2915564494918)",
       "id": 3
     },
     {
-      "scenarioId": 2,
-      "vehicleName": "hhi",
-      "speed": "55",
-      "positionX": "45",
-      "positionY": "48",
+      "scenarioId": 3,
+      "vehicleName": "Vehicle ABC",
+      "speed": "3",
+      "positionX": "100",
+      "positionY": "100",
       "direction": "Downwards",
-      "color": "rgb(20.391818187717202, 173.58521712469494, 148.9638683204876)",
+      "color": "rgb(73.4661569978784, 27.213442068995416, 19.31014605614279)",
+      "id": 4
+    },
+    {
+      "scenarioId": 3,
+      "vehicleName": "Vehicle 123",
+      "speed": "10",
+      "positionX": "0",
+      "positionY": "0",
+      "direction": "Towards",
+      "color": "rgb(190.50180597855615, 174.5355164699509, 241.34550516819357)",
       "id": 5
     }
   ]

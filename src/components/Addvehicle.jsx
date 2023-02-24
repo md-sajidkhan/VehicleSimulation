@@ -10,6 +10,7 @@ function Addvehicle() {
   const directions = ["Towards","Backwards", "Upwards", "Downwards"];
   const [scenarios, setScenarios] = useState([]);
   const [vehicleId, setVehicleId] = useState(null);
+  const [buttonText, setButtonText] = useState('Add');
   const [buttonClicked, setButtonClicked] = useState(false);
   const [errors, setErrors] = useState({});
   
@@ -39,6 +40,7 @@ function Addvehicle() {
         direction: direction,
       }));
       setVehicleId(id)
+      setButtonText('Update');
     }
     window.history.replaceState({}, '/addvehicle');
   }, [location.state]);
@@ -89,31 +91,46 @@ function Addvehicle() {
       setErrors(error);
       return;
     }
-    // console.log(vehicleData);
     if (vehicleId) {
       await axios.put(`http://localhost:3005/vehicles/${vehicleId}`, vehicleData)
-        .then(res => { console.log(res) })
-        .catch(err => { console.log(err) });
-      toast.success("Updated Successfully", {
-        position: "bottom-right",
-        theme: 'colored',
-        autoClose: 3000,
-      });
+        .then(res => { 
+          toast.success("Updated Successfully", {
+            position: "bottom-right",
+            theme: 'colored',
+            autoClose: 3000,
+          });
+          setButtonText("Add");
+         })
+        .catch(err => { 
+          toast.error("Error", {
+            position: "bottom-right",
+            theme: 'colored',
+            autoClose: 3000,
+          });
+         });
     } else {
       await axios.post('http://localhost:3005/vehicles', vehicleData)
-        .then(res => { console.log(res) })
-        .catch(err => { console.log(err) });
-      toast.success("Added Successfully", {
-        position: "bottom-right",
-        theme: 'colored',
-        autoClose: 3000,
-      });
+        .then(res => { 
+          toast.success("Added Successfully", {
+            position: "bottom-right",
+            theme: 'colored',
+            autoClose: 3000,
+          });
+         })
+        .catch(err => { 
+          toast.error("Error", {
+            position: "bottom-right",
+            theme: 'colored',
+            autoClose: 3000,
+          });
+         });
     }
     handleReset();
   }
 
   const handleAddClick = () => {
     setButtonClicked(true);
+    setButtonText(vehicleId ? 'Update' : 'Add');
   }
 
   const handleValidation = () => {
@@ -194,7 +211,7 @@ function Addvehicle() {
           </div>
         </div>
       </div>
-      <button className='btncss btn-green' type='submit' onClick={handleAddClick}>Add</button>
+      <button className='btncss btn-green' type='submit' onClick={handleAddClick}>{buttonText}</button>
       <button className='btncss btn-orange' onClick={handleReset}>Reset</button>
       <button className='btncss btn-blue' onClick={() => navigate('/')}>Go Back</button>
       <ToastContainer/>

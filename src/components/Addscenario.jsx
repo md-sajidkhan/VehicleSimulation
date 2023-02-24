@@ -10,6 +10,7 @@ function Addscenario() {
   const navigate = useNavigate();
   const location = useLocation();
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [buttonText, setButtonText] = useState('Add');
   const [scenarioId, setScenarioId] = useState(null);
   const [scenarioData, setScenarioData] = useState({
     scenarioName: '',
@@ -27,6 +28,7 @@ function Addscenario() {
         scenarioTime: scenarioTime
       });
       setScenarioId(id);
+      setButtonText('Update');
     }
     window.history.replaceState( {} , '/addscenario' );
   }, [location.state]);
@@ -40,6 +42,7 @@ function Addscenario() {
 
   const handleAddClick = () => {
     setButtonClicked(true);
+    setButtonText(scenarioId ? 'Update' : 'Add');
   }
 
   const handleScenariosubmit = async () => {
@@ -51,24 +54,41 @@ function Addscenario() {
 
     if (scenarioId) {
     await axios.put(`http://localhost:3005/scenarios/${scenarioId}`, scenarioData)
-      .then(res => { console.log(res) })
-      .catch(err => { console.log(err) });
-    toast.success("Updated Successfully", {
-      position: "bottom-right",
-      theme: 'colored',
-      autoClose: 3000,
-    });
-  } else {
+      .then(res => { 
+        toast.success("Updated Successfully", {
+          position: "bottom-right",
+          theme: 'colored',
+          autoClose: 3000,
+        });
+        setButtonText("Add");
+       })
+      .catch(err => { 
+        toast.error("Error", {
+          position: "bottom-right",
+          theme: 'colored',
+          autoClose: 3000,
+        });
+       });
+  } 
+  else
+  {
     await axios.post('http://localhost:3005/scenarios', scenarioData)
-      .then(res => { console.log(res) })
-      .catch(err => { console.log(err) });
-    toast.success("Added Successfully", {
-      position: "bottom-right",
-      theme: 'colored',
-      autoClose: 3000,
-    });
-  }
-    handleReset();
+      .then(res => { 
+        toast.success("Added Successfully", {
+          position: "bottom-right",
+          theme: 'colored',
+          autoClose: 3000,
+       });
+      })
+      .catch(err => { 
+        toast.error("Error", {
+          position: "bottom-right",
+          theme: 'colored',
+          autoClose: 3000,
+        });
+       });
+      }
+  handleReset();
   }
 
   const handleValidation = () => {
@@ -112,7 +132,7 @@ function Addscenario() {
           {errors.scenarioTime && <span className='error-message'>{errors.scenarioTime}</span> }
         </div>
       </form>
-      <button className='btncss btn-green' type='submit' onClick={handleAddClick}>Add</button>
+      <button className='btncss btn-green' type='submit' onClick={handleAddClick}>{buttonText}</button>
       <button className='btncss btn-orange' onClick={handleReset}>Reset</button>
       <button className='btncss btn-blue' onClick={() => navigate('/')}>Go Back</button>
       <ToastContainer/>
