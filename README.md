@@ -17,8 +17,8 @@ Steps to run the application:
 	    
         c. Install json-server 
             > npm install json-server
-	    
-	d. Install electronJS
+	
+        d. Install electronJS
 	    > npm i electron
 	    
         e. Start Desktop Application
