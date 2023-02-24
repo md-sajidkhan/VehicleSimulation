@@ -18,11 +18,14 @@ Steps to run the application:
         c. Install json-server 
             > npm install json-server
 	    
-        d. Start json-server
-            > npm run dbscript
+	d. Install electronJS
+	    > npm i electron
 	    
-        e. Start Vehicle Simulator Application
-            > npm run dev
+        d. Start Desktop Application
+            > npm run app
 	    
-        f. Open application url in browser 
+        e. Start Web Application
+            > npm run web
+	    
+        f. Open application url in browser for web application
             default : "http://localhost:5173"
